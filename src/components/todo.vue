@@ -8,7 +8,7 @@
           </div>
           <h1 calss="title-page">
               <span class="title-wrapper">{{ todo.title}}</span>
-              <span class="count-list">{{todo.count}}</span>
+              <span class="count-list">{{todo.count || 0}}</span>
           </h1>
           <div class="nav-group right">
                   <div class="options-web">
@@ -47,11 +47,7 @@ export default {
             count:12,
             locked:false
         },
-        items: [ //代办单项列表
-            { checked: false, text: '新的一天', isDelete: false },
-            { checked: false, text: '新的一天', isDelete: false },
-            { checked: false, text: '新的一天', isDelete: false }
-        ],
+        items: [],
         text:'' //新增代办单项绑定的值
       }
   },
