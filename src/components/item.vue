@@ -1,9 +1,9 @@
 <template>
   <div class="list-item editingClass editing">
-      <lable class="checkbox">
+      <label class="checkbox">
           <input type="checkbox" v-model="item.checked">
           <span class="checkbox-custom"></span>
-      </lable>
+      </label>
       <input type="text" v-model="item.text" placeholder="input something..."/>
       <a class="delete-item">
           <span class="icon-trash"></span>

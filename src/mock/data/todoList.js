@@ -1,6 +1,6 @@
-import Mock from 'mock.js';
+import Mock from 'mockjs';
 let Todos=[];
-constants COUNT=[1,2,3,4,5];
+const COUNT=[1,2,3,4,5];
 
 for(let i=1;i<COUNT.length;i++){
 
