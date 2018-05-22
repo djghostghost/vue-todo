@@ -53,5 +53,52 @@ export default {
             });
         });
 
+        //获取单个列表
+        mock.onGet('/todo/listId').reply(config => {
+
+          let{
+            id
+          }=config.params;
+
+          let todo = Todos.find(todo => {
+            return id && todo.id==id;
+          });
+
+          todo.count = todo.record.filter((data) => {
+            return data.checked=false;
+          }).length;
+          console.log("here is find");
+          return new Promise((resolve,reject) => {
+            setTimeout(() => {
+              resolve([200, {
+                todo: todo
+              }]);
+            }, 200);
+          });
+        });
+        mock.onPost('/todo/addRecord').reply(config => {
+          let {
+            id,
+            text
+          } = JSON.parse(config.data);
+           // id 是传进来的值唯一待办项的id
+          // text 用户新增输入的数据
+          Todos.some((t, index) => {
+            if (t.id === id) {
+              t.record.push({
+                text: text,
+                isDelete: false,
+                checked: false
+              });
+              return true;
+            }
+          });
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve([200]);
+            }, 200);
+          });
+        });
+
     }
 };

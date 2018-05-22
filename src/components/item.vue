@@ -12,8 +12,18 @@
 </template>
 <script>
 export default {
-  props:['item']
-}
+  props:{
+      item:{
+          type:Object,
+          default:()=>{
+              return{
+                  checked:false,
+                  text:'Hello world'
+              }
+          }
+      }
+  }
+};
 </script>
 <style lang="less">
 @import '../common/style/list-items.less';

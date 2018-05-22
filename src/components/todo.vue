@@ -35,6 +35,7 @@
   </div>
 </template>
 <script>
+import { getTodo,addRecord} from '../api/api'
 import item from './item'
 export default {
   components:{
@@ -52,12 +53,35 @@ export default {
       }
   },
   methods:{
-      onAdd() {
-          this.items.push({
-              checked:false, text:this.text, isDelete:false
+      init(){
+          const ID = this.$route.params.id;
+          getTodo({id:ID}).then(res=>{
+              let {id,title,count,isDelete,locked,record} = res.data.todo;
+              this.items=record;
+              this.todo={
+                  id:id,
+                  title:title,
+                  count:count,
+                  locked:locked,
+                  isDelete:isDelete
+              };
           });
-          this.text='';
+      },
+      onAdd() {
+          const ID=this.$route.params.id;
+          addRecord({id:ID,text:this.text}).then(res=>{
+              this.text='';
+              this.init();
+          });
       }
+  },
+  watch:{
+      '$route.params.id'(){
+          this.init();
+      }
+  },
+  created(){
+      this.init();
   }
 };
 </script>
